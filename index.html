@@ -5,19 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Undangan Pernikahan - Dani & Selma</title>
     
+    <!-- Tailwind CSS CDN v4 -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     
+    <!-- Google Fonts Premium -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
 
+    <!-- Alpine.js + Intersect Plugin (Untuk Animasi Scroll) -->
     <script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <style>
-        /* INJEKSI PALET WARNA BARU */
+        /* INJEKSI PALET WARNA (DD1F55 SEBAGAI BASE UTAMA) */
         :root {
-            --color-primary: #DD1F55;    /* Raspberry Pink */
+            --color-primary: #DD1F55;    /* Raspberry Pink (Dominan) */
             --color-terracotta: #EB7D3D; /* Terracotta Orange */
             --color-mustard: #E4911E;    /* Mustard Gold */
             --color-olive: #9C9851;      /* Olive Green */
@@ -28,30 +31,29 @@
         .font-sans { font-family: 'Montserrat', sans-serif; }
         
         body { 
-            background-color: #FDFBF7; /* Putih tulang hangat agar serasi dengan sand beige */
+            background-color: #FFFDFB; 
             color: #3C3630; 
             overflow-x: hidden; 
         }
         
-        /* BACKGROUND FLORAL SILUET (Menggunakan SVG Vector Halus) */
+        /* BACKGROUND FLORAL SILUET DENGAN SENTUHAN RASPBERRY TIPIS */
         .bg-floral-silhouette {
-            background-color: #FDFBF7;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M10,0 C15,5 20,20 15,35 C12,45 5,50 0,60 L0,0 Z M100,20 C90,30 85,50 90,65 C93,75 98,80 100,90 Z M30,100 C40,90 45,75 40,60 C37,50 32,45 30,30 Z' fill='%23E4C7A5' fill-opacity='0.12'/%3E%3C/svg%3E");
+            background-color: #FFFDFB;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M10,0 C15,5 20,20 15,35 C12,45 5,50 0,60 L0,0 Z M100,20 C90,30 85,50 90,65 C93,75 98,80 100,90 Z M30,100 C40,90 45,75 40,60 C37,50 32,45 30,30 Z' fill='%23DD1F55' fill-opacity='0.05'/%3E%3C/svg%3E");
             background-size: 100% 100%;
         }
 
         .bg-floral-silhouette-dark {
-            background-color: #F9F5EE;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M10,100 C20,80 15,60 5,45 C0,35 2,20 0,0 L100,0 L100,100 Z' fill='%239C9851' fill-opacity='0.05'/%3E%3C/svg%3E");
+            background-color: #FDF4F6; /* Background seksi dengan rona pink lembut */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M10,100 C20,80 15,60 5,45 C0,35 2,20 0,0 L100,0 L100,100 Z' fill='%23DD1F55' fill-opacity='0.03'/%3E%3C/svg%3E");
             background-size: 100% 100%;
         }
         
         /* Custom scrollbar untuk list ucapan */
         .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #F4EFE6; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #E4C7A5; border-radius: 2px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #FDF4F6; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #DD1F55; border-radius: 2px; }
 
-        /* Utility Class untuk Animasi Halus */
         .fade-in-up {
             opacity: 0;
             transform: translateY(30px);
@@ -65,72 +67,72 @@
 </head>
 <body class="min-h-screen font-sans" x-data="weddingApp()">
 
+    <!-- HERO SECTION -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-floral-silhouette">
         <div class="absolute inset-0 z-0 opacity-20">
-            <div class="absolute top-10 left-10 w-72 h-72 rounded-full mix-blend-multiply filter blur-3xl animate-pulse duration-[6000ms]" style="background-color: var(--color-sand);"></div>
-            <div class="absolute bottom-10 right-10 w-80 h-80 rounded-full mix-blend-multiply filter blur-3xl animate-pulse duration-[4000ms]" style="background-color: var(--color-terracotta);"></div>
+            <div class="absolute top-10 left-10 w-72 h-72 rounded-full mix-blend-multiply filter blur-3xl animate-pulse duration-[6000ms]" style="background-color: var(--color-primary);"></div>
+            <div class="absolute bottom-10 right-10 w-80 h-80 rounded-full mix-blend-multiply filter blur-3xl animate-pulse duration-[4000ms]" style="background-color: var(--color-sand);"></div>
         </div>
 
-        <div class="z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center fade-in-up" 
-             x-init="$el.classList.add('visible')">
-            
-            <p class="font-sans text-sm tracking-[0.3em] uppercase mb-8 transition-all duration-1000 delay-300" style="color: var(--color-mustard);">
-                Pernikahan Kami
-            </p>
+        <div class="z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center fade-in-up" x-init="$el.classList.add('visible')">
+            <p class="font-sans text-sm tracking-[0.3em] uppercase mb-8 font-semibold" style="color: var(--color-primary);">Pernikahan Kami</p>
 
-            <div class="w-56 h-56 md:w-72 md:h-72 mb-10 border-8 border-white shadow-2xl flex items-center justify-center relative overflow-hidden transition-all duration-1000 delay-500" style="background-color: var(--color-sand);">
+            <!-- Bingkai Foto Kotak 1:1 -->
+            <div class="w-56 h-56 md:w-72 md:h-72 mb-10 border-8 border-white shadow-2xl flex items-center justify-center relative overflow-hidden transition-transform duration-500 hover:scale-102" style="background-color: var(--color-sand);">
                 <img src="img2.jpg" alt="Mempelai" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'">
                 <span class="font-sans text-sm opacity-60" style="color: var(--color-primary);">Foto Mempelai (1:1)</span>
             </div>
 
-            <div class="font-serif text-5xl md:text-7xl lg:text-8xl mb-8 leading-tight flex flex-col items-center transition-all duration-1000 delay-700" style="color: #3C3630;">
-                <span>Dani Ismail</span>
-                <span class="italic font-light text-3xl md:text-5xl my-3 opacity-80" style="color: var(--color-terracotta);">&</span>
-                <span>Selma Kamilla Islamaya</span>
+            <!-- Nama Mempelai Atas-Bawah (Warna Dominan Raspberry Pink) -->
+            <div class="font-serif text-5xl md:text-7xl lg:text-8xl mb-8 leading-tight flex flex-col items-center" style="color: var(--color-primary);">
+                <span class="font-semibold">Dani Ismail</span>
+                <span class="italic font-light text-3xl md:text-5xl my-3 opacity-60" style="color: var(--color-terracotta);">&</span>
+                <span class="font-semibold">Selma Kamilla Islamaya</span>
             </div>
             
-            <p class="font-sans font-light text-lg md:text-xl tracking-wider transition-all duration-1000 delay-[900ms]" style="color: var(--color-olive);">
-                30 Oktober 2026
-            </p>
+            <p class="font-sans font-light text-lg md:text-xl tracking-wider" style="color: #3C3630;">30 Oktober 2026</p>
         </div>
     </section>
 
-    <section class="py-24 bg-white text-center border-t border-stone-100" 
-             x-data="{ shown: false }" x-intersect.once="shown = true">
+    <!-- COUNTDOWN SECTION (DI-PERBAIKI) -->
+    <section class="py-24 bg-white text-center border-t border-stone-100" x-data="{ shown: false }" x-intersect.once="shown = true">
         <div class="max-w-3xl mx-auto px-4 fade-in-up" :class="shown && 'visible'">
             <h2 class="font-serif text-3xl md:text-4xl mb-12 text-stone-800">Menuju Hari Bahagia</h2>
             <div class="flex justify-center gap-4 md:gap-8">
+                <!-- Looping Countdown Alpine JS -->
                 <template x-for="(value, key) in timeLeft" :key="key">
                     <div class="flex flex-col items-center transform hover:scale-105 transition-transform duration-300">
-                        <div class="w-16 h-16 md:w-24 md:h-24 flex items-center justify-center border rounded-lg shadow-xs mb-3 bg-opacity-20 border-stone-200" style="background-color: var(--color-sand);">
-                            <span class="font-serif text-2xl md:text-4xl" style="color: var(--color-primary); x-text="value"></span>
+                        <!-- Box Angka dominan menggunakan border dan teks warna Raspberry Pink -->
+                        <div class="w-16 h-16 md:w-24 md:h-24 flex items-center justify-center border-2 rounded-xl shadow-sm mb-3 bg-opacity-5" style="background-color: var(--color-primary); border-color: var(--color-primary);">
+                            <span class="font-serif text-2xl md:text-4xl font-semibold" style="color: var(--color-primary);" x-text="value"></span>
                         </div>
-                        <span class="font-sans text-xs md:text-sm uppercase tracking-widest text-stone-500" x-text="key"></span>
+                        <span class="font-sans text-xs md:text-sm uppercase tracking-widest font-medium text-stone-500" x-text="key"></span>
                     </div>
                 </template>
             </div>
         </div>
     </section>
 
-    <section class="py-24 bg-floral-silhouette-dark" 
-             x-data="{ shown: false }" x-intersect.once="shown = true">
+    <!-- DETAILS SECTION -->
+    <section class="py-24 bg-floral-silhouette-dark" x-data="{ shown: false }" x-intersect.once="shown = true">
         <div class="max-w-3xl mx-auto px-4 fade-in-up" :class="shown && 'visible'">
             <h2 class="font-serif text-3xl md:text-4xl text-center mb-16 text-stone-800">Detail Acara</h2>
-            
             <div class="flex justify-center">
-                <div class="bg-white p-10 md:p-14 rounded-2xl shadow-xl border border-stone-100 flex flex-col items-center text-center relative overflow-hidden w-full max-w-lg hover:shadow-2xl transition-shadow duration-500">
-                    <div class="absolute top-0 left-0 w-full h-1.5" style="background-color: var(--color-terracotta);"></div>
+                <div class="bg-white p-10 md:p-14 rounded-3xl shadow-xl border border-stone-100 flex flex-col items-center text-center relative overflow-hidden w-full max-w-lg">
+                    <!-- Garis aksen atas dominan Raspberry Pink -->
+                    <div class="absolute top-0 left-0 w-full h-2" style="background-color: var(--color-primary);"></div>
                     
-                    <h3 class="font-serif text-2xl md:text-3xl mb-8" style="color: var(--color-primary);">Akad Nikah</h3>
+                    <h3 class="font-serif text-3xl md:text-4xl mb-8" style="color: var(--color-primary);">Akad Nikah</h3>
                     <div class="space-y-5 mb-10 font-sans font-light text-stone-600">
-                        <p class="flex items-center justify-center gap-3">📅 <span class="font-normal">Jumat, 30 Oktober 2026</span></p>
-                        <p class="flex items-center justify-center gap-3">⏰ <span class="font-normal">09:00 WIB - Selesai</span></p>
+                        <p class="flex items-center justify-center gap-3">📅 <span class="font-semibold text-stone-800">Jumat, 30 Oktober 2026</span></p>
+                        <p class="flex items-center justify-center gap-3">⏰ <span class="font-semibold text-stone-800">09:00 WIB - Selesai</span></p>
                         <p class="flex items-center justify-center gap-3 px-4">📍 Masjid Jami' Al-Amanah, Baranangsiang, Kota Bogor, Jawa Barat</p>
                     </div>
                     
+                    <!-- Tombol Utama menggunakan warna Raspberry Pink -->
                     <a href="https://maps.app.goo.gl/VNGQjLtNzxsDSMNx5" target="_blank" rel="noopener noreferrer" 
-                       class="px-8 py-3 text-white rounded-full font-sans text-sm shadow-md active:scale-95 transition-all duration-300 inline-block hover:opacity-90"
-                       style="background-color: var(--color-olive);">
+                       class="px-10 py-3 text-white rounded-full font-sans text-sm font-medium shadow-lg shadow-pink-100 active:scale-95 transition-all duration-300 inline-block hover:opacity-90"
+                       style="background-color: var(--color-primary);">
                         Buka Peta Lokasi
                     </a>
                 </div>
@@ -138,13 +140,14 @@
         </div>
     </section>
 
+    <!-- RSVP SECTION -->
     <section class="py-24 bg-white" x-data="rsvpForm()" x-intersect.once="shown = true">
         <div class="max-w-2xl mx-auto px-4 text-center fade-in-up" :class="shown && 'visible'">
             <h2 class="font-serif text-3xl md:text-4xl mb-4 text-stone-800">RSVP</h2>
             <p class="font-sans font-light text-stone-500 mb-12">Merupakan suatu kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.</p>
 
             <div x-show="status === 'submitted'" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 scale-90" class="p-8 rounded-2xl border flex flex-col items-center bg-stone-50 border-stone-200">
-                <span class="text-5xl mb-4 animate-bounce" style="color: var(--color-olive);">✓</span>
+                <span class="text-5xl mb-4 animate-bounce" style="color: var(--color-primary);">✓</span>
                 <h3 class="font-serif text-2xl text-stone-800 mb-2">Terima Kasih!</h3>
                 <p class="font-sans font-light text-stone-600">Konfirmasi kehadiran Anda telah kami terima.</p>
             </div>
@@ -153,11 +156,11 @@
                 <div class="text-left space-y-6">
                     <div>
                         <label class="block font-sans text-sm text-stone-600 mb-2">Nama Lengkap</label>
-                        <input x-model="nama" required type="text" class="w-full border-b py-2 focus:outline-none bg-transparent font-sans text-stone-800 transition-colors duration-300 border-stone-300" style="focus-border-color: var(--color-primary);" placeholder="Masukkan nama Anda...">
+                        <input x-model="nama" required type="text" class="w-full border-b py-2 focus:outline-none bg-transparent font-sans text-stone-800 border-stone-300 focus:border-pink-600 transition-colors duration-300" placeholder="Masukkan nama Anda...">
                     </div>
                     <div>
                         <label class="block font-sans text-sm text-stone-600 mb-2">Apakah Anda akan hadir?</label>
-                        <select x-model="kehadiran" required class="w-full border-b py-2 focus:outline-none bg-transparent font-sans text-stone-800 transition-colors duration-300 border-stone-300">
+                        <select x-model="kehadiran" required class="w-full border-b py-2 focus:outline-none bg-transparent font-sans text-stone-800 border-stone-300 focus:border-pink-600 transition-colors duration-300">
                             <option value="">Pilih konfirmasi...</option>
                             <option value="Hadir">Ya, saya akan hadir</option>
                             <option value="Tidak Hadir">Maaf, saya tidak bisa hadir</option>
@@ -172,8 +175,7 @@
                         </select>
                     </div>
                     
-                    <button type="submit" :disabled="isSubmitting" class="w-full text-white font-sans py-4 rounded-lg tracking-wider active:scale-[0.99] transition-all duration-300 mt-8 flex items-center justify-center gap-2 disabled:bg-stone-400 shadow-md hover:opacity-90"
-                            style="background-color: var(--color-primary);">
+                    <button type="submit" :disabled="isSubmitting" class="w-full text-white font-sans py-4 rounded-xl tracking-wider active:scale-[0.99] transition-all duration-300 mt-8 flex items-center justify-center gap-2 disabled:bg-stone-400 shadow-xl shadow-pink-50 hover:opacity-95" style="background-color: var(--color-primary);">
                         <span x-show="isSubmitting" class="animate-spin inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full"></span>
                         <span x-text="isSubmitting ? 'MENGIRIM...' : 'KIRIM KONFIRMASI'"></span>
                     </button>
@@ -182,6 +184,7 @@
         </div>
     </section>
 
+    <!-- WISH SECTION -->
     <section class="py-24 bg-floral-silhouette" x-data="wishSection()" x-intersect.once="shown = true">
         <div class="max-w-4xl mx-auto px-4 fade-in-up" :class="shown && 'visible'">
             <div class="text-center mb-16">
@@ -190,39 +193,27 @@
             </div>
 
             <div class="grid md:grid-cols-5 gap-12">
-                <div class="md:col-span-2 space-y-6 bg-white p-6 md:p-8 rounded-2xl shadow-xl border border-stone-100 h-fit">
+                <!-- Form Ucapan -->
+                <form @submit.prevent="handleSubmitWish" class="md:col-span-2 space-y-6 bg-white p-6 md:p-8 rounded-2xl shadow-xl border border-stone-100 h-fit">
                     <div>
                         <label class="block font-sans text-sm text-stone-600 mb-2">Nama Anda</label>
-                        <input x-model="name" type="text" class="w-full border rounded-lg px-4 py-2 focus:outline-none bg-stone-50 font-sans text-stone-800 border-stone-200" placeholder="Mis: Sahabat, Keluarga...">
+                        <input x-model="name" required type="text" class="w-full border rounded-lg px-4 py-2 focus:outline-none bg-stone-50 font-sans text-stone-800 border-stone-200 focus:border-pink-400 transition-colors" placeholder="Mis: Sahabat, Keluarga...">
                     </div>
                     
                     <div>
-                        <label class="block font-sans text-sm text-stone-600 mb-2 flex items-center justify-between">
-                            <span>Ucapan Anda</span>
-                            <div class="flex items-center gap-1 text-xs px-2 py-1 rounded-full animate-pulse font-medium" style="background-color: #FEF3C7; color: var(--color-mustard);">
-                                ✦ AI Formatter
-                            </div>
-                        </label>
-                        <textarea x-model="wishText" rows="4" class="w-full border rounded-lg px-4 py-3 focus:outline-none bg-stone-50 font-sans text-stone-800 text-sm leading-relaxed resize-none border-stone-200" placeholder="Ketik ucapan sederhana Anda di sini..."></textarea>
-                        
-                        <p x-show="errorMsg" x-text="errorMsg" class="text-red-500 text-xs mt-2 font-sans" x-transition></p>
-
-                        <button type="button" @click="handleBeautify" :disabled="isGenerating || !wishText.trim()" 
-                                class="mt-3 w-full border font-sans text-sm py-2 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 hover:bg-amber-50 active:scale-95 cursor-pointer disabled:opacity-40"
-                                style="color: var(--color-mustard); border-color: var(--color-sand);">
-                            <span x-show="isGenerating" class="animate-spin inline-block w-3 h-3 border-2 border-t-transparent rounded-full" style="border-color: var(--color-mustard);"></span>
-                            <span x-text="isGenerating ? 'Sedang merangkai kata...' : '✦ Perindah dengan AI'"></span>
-                        </button>
+                        <label class="block font-sans text-sm text-stone-600 mb-2">Ucapan Anda</label>
+                        <textarea x-model="wishText" required rows="4" class="w-full border rounded-lg px-4 py-3 focus:outline-none bg-stone-50 font-sans text-stone-800 text-sm leading-relaxed resize-none border-stone-200 focus:border-pink-400 transition-colors" placeholder="Ketik ucapan dan doa Anda di sini..."></textarea>
                     </div>
 
-                    <button @click="handleSubmitWish" :disabled="!name || !wishText.trim() || isSubmittingWish" 
-                            class="w-full text-white font-sans py-3 rounded-lg flex items-center justify-center gap-2 active:scale-[0.99] transition-all duration-300 disabled:bg-stone-300 disabled:text-stone-500 shadow-sm hover:opacity-95"
+                    <button type="submit" :disabled="!name.trim() || !wishText.trim() || isSubmittingWish" 
+                            class="w-full text-white font-sans py-3 rounded-lg flex items-center justify-center gap-2 active:scale-[0.99] transition-all duration-300 disabled:bg-stone-300 disabled:text-stone-500 shadow-md hover:opacity-95 cursor-pointer"
                             style="background-color: var(--color-primary);">
                         <span x-show="isSubmittingWish" class="animate-spin inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full"></span>
                         <span>Kirim Ucapan</span>
                     </button>
-                </div>
+                </form>
 
+                <!-- List Ucapan -->
                 <div class="md:col-span-3 space-y-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
                     <template x-for="(wish, idx) in wishesList" :key="idx">
                         <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-xs transform hover:-translate-y-1 transition-all duration-300">
@@ -238,18 +229,16 @@
         </div>
     </section>
 
+    <!-- FOOTER -->
     <footer class="py-12 text-center text-stone-400" style="background-color: #26211C;">
         <p class="font-serif text-2xl mb-4 text-white">Dani & Selma</p>
         <p class="font-sans text-xs tracking-widest uppercase mb-8" style="color: var(--color-sand);">30 Oktober 2026</p>
-        <p class="font-sans text-xs opacity-50">
-            Created With Love from Feb 2021 ❤️
-        </p>
+        <p class="font-sans text-xs opacity-50">Created With Love from Feb 2021 ❤️</p>
     </footer>
 
+    <!-- LOGIKA UTAMA SCRIPT -->
     <script>
         const GLOBAL_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwFFpPQ_LFP_UInqbH0LdAFEWDw6AJ1uDeEMPJdRdOIYdcidVak1faLv69IOm8_wbWpUQ/exec';
-		
-        const GEMINI_API_KEY = ""; // Masukkan Gemini API Key Anda di sini jika ada
 
         function weddingApp() {
             return {
@@ -263,6 +252,11 @@
                             this.timeLeft.jam = Math.floor((difference / (1000 * 60 * 60)) % 24);
                             this.timeLeft.menit = Math.floor((difference / 1000 / 60) % 60);
                             this.timeLeft.detik = Math.floor((difference / 1000) % 60);
+                        } else {
+                            this.timeLeft.hari = 0;
+                            this.timeLeft.jam = 0;
+                            this.timeLeft.menit = 0;
+                            this.timeLeft.detik = 0;
                         }
                     };
                     calculate();
@@ -307,45 +301,12 @@
             return {
                 name: '',
                 wishText: '',
-                isGenerating: false,
                 isSubmittingWish: false,
-                errorMsg: '',
                 shown: false,
                 wishesList: [
                     { name: "Keluarga Besar Bpk. Handoko", text: "Selamat menempuh hidup baru. Semoga menjadi keluarga yang sakinah, mawaddah, dan warahmah. Cinta dan kasih sayang selalu menyertai perjalanan kalian.", time: "1 jam yang lalu" },
                     { name: "Sahabat Kuliah", text: "Akhirnya hari yang ditunggu tiba! Selamat mengarungi bahtera rumah tangga, semoga senantiasa diberikan kebahagiaan dan keberkahan.", time: "3 jam yang lalu" }
                 ],
-                async handleBeautify() {
-                    if (!this.wishText.trim()) return;
-                    this.isGenerating = true;
-                    this.errorMsg = '';
-                    
-                    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${GEMINI_API_KEY}`;
-                    
-                    try {
-                        const response = await fetch(url, {
-                            method: 'POST',
-                            headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({
-                                contents: [{ parts: [{ text: this.wishText }] }],
-                                systemInstruction: { 
-                                    parts: [{ 
-                                        text: "Anda adalah asisten pernikahan yang ahli merangkai kata. Pengguna akan memberikan draf ucapan selamat pernikahan. Tugas Anda adalah memperindah bahasanya agar terdengar lebih elegan, puitis, romantis, hangat, dan tulus dalam bahasa Indonesia. Jangan mengubah esensi pesan. Berikan hanya hasil teksnya saja tanpa tanda kutip atau penjelasan tambahan." 
-                                    }] 
-                                }
-                            })
-                        });
-
-                        if (!response.ok) throw new Error('Sistem AI sedang sibuk.');
-                        const data = await response.json();
-                        const result = data.candidates?.[0]?.content?.parts?.[0]?.text;
-                        if (result) this.wishText = result.trim();
-                    } catch (err) {
-                        this.errorMsg = "Gagal memperindah ucapan, menggunakan teks asli.";
-                    } finally {
-                        this.isGenerating = false;
-                    }
-                },
                 async handleSubmitWish() {
                     this.isSubmittingWish = true;
                     try {
