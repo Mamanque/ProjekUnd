@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan - Dani & Selma</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <style>
+        .font-serif { font-family: 'Cormorant Garamond', serif; }
+        .font-sans { font-family: 'Montserrat', sans-serif; }
+        body { background-color: #FAFAFA; color: #333333; }
+        
+        /* Custom scrollbar untuk list ucapan */
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #d6d3d1; border-radius: 2px; }
+    </style>
+</head>
+<body class="min-h-screen bg-stone-50 font-sans" x-data="weddingApp()">
+
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-stone-50">
+        <div class="absolute inset-0 z-0 opacity-20">
+            <div class="absolute top-0 left-0 w-64 h-64 bg-stone-200 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-pulse"></div>
+            <div class="absolute top-0 right-0 w-64 h-64 bg-stone-300 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-pulse"></div>
+        </div>
+
+        <div class="z-10 text-center px-4 max-w-4xl mx-auto flex flex-col items-center">
+            <p class="font-sans text-sm tracking-[0.3em] uppercase text-stone-500 mb-8">Pernikahan Kami</p>
+
+            <div class="w-56 h-56 md:w-72 md:h-72 mb-8 border-8 border-white shadow-2xl bg-stone-200 flex items-center justify-center relative overflow-hidden">
+                <img src="nama_foto.jpg" alt="Mempelai" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none'">
+                <span class="font-sans text-stone-400 text-sm">Foto Mempelai (1:1)</span>
+            </div>
+
+            <div class="font-serif text-5xl md:text-7xl lg:text-8xl text-stone-800 mb-8 leading-tight flex flex-col items-center">
+                <span>Dani Ismail</span>
+                <span class="italic font-light text-stone-400 text-3xl md:text-5xl my-2">&</span>
+                <span>Selma Kamilla Islamaya</span>
+            </div>
+            
+            <p class="font-sans font-light text-stone-600 text-lg md:text-xl tracking-wider">30 Oktober 2026</p>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white text-center">
+        <div class="max-w-3xl mx-auto px-4">
+            <h2 class="font-serif text-3xl md:text-4xl text-stone-800 mb-12">Menuju Hari Bahagia</h2>
+            <div class="flex justify-center gap-4 md:gap-8">
+                <template x-for="(value, key) in timeLeft" :key="key">
+                    <div class="flex flex-col items-center">
+                        <div class="w-16 h-16 md:w-24 md:h-24 flex items-center justify-center bg-stone-50 border border-stone-200 rounded-lg shadow-sm mb-3">
+                            <span class="font-serif text-2xl md:text-4xl text-stone-800" x-text="value"></span>
+                        </div>
+                        <span class="font-sans text-xs md:text-sm uppercase tracking-widest text-stone-500" x-text="key"></span>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-stone-50">
+        <div class="max-w-3xl mx-auto px-4">
+            <h2 class="font-serif text-3xl md:text-4xl text-center text-stone-800 mb-16">Detail Acara</h2>
+            
+            <div class="flex justify-center">
+                <div class="bg-white p-10 md:p-14 rounded-2xl shadow-sm border border-stone-100 flex flex-col items-center text-center relative overflow-hidden w-full max-w-lg">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-stone-200 via-stone-300 to-stone-200"></div>
+                    <h3 class="font-serif text-2xl md:text-3xl mb-8 text-stone-800">Akad Nikah</h3>
+                    <div class="space-y-5 mb-10 font-sans font-light text-stone-600">
+                        <p class="flex items-center justify-center gap-3">📅 Jumat, 30 Oktober 2026</p>
+                        <p class="flex items-center justify-center gap-3">⏰ 09:00 WIB - Selesai</p>
+                        <p class="flex items-center justify-center gap-3">📍 Masjid Jami' Al-Amanah, Baranangsiang, Kota Bogor, Jawa Barat</p>
+                    </div>
+                    <a href="https://maps.app.goo.gl/VNGQjLtNzxsDSMNx5" target="_blank" rel="noopener noreferrer" class="px-8 py-3 border border-stone-300 text-stone-600 rounded-full font-sans text-sm hover:bg-stone-50 transition-colors inline-block">
+                        Buka Peta Lokasi
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white" x-data="rsvpForm()">
+        <div class="max-w-2xl mx-auto px-4 text-center">
+            <h2 class="font-serif text-3xl md:text-4xl text-stone-800 mb-4">RSVP</h2>
+            <p class="font-sans font-light text-stone-500 mb-12">Merupakan suatu kehormatan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir.</p>
+
+            <div x-show="status === 'submitted'" x-transition class="bg-stone-50 p-8 rounded-2xl border border-stone-200 flex flex-col items-center">
+                <span class="text-green-600 text-5xl mb-4">✓</span>
+                <h3 class="font-serif text-2xl text-stone-800 mb-2">Terima Kasih!</h3>
+                <p class="font-sans font-light text-stone-600">Konfirmasi kehadiran Anda telah kami terima.</p>
+            </div>
+
+            <form x-show="status !== 'submitted'" @submit.prevent="handleSubmit">
+                <div class="text-left space-y-6">
+                    <div>
+                        <label class="block font-sans text-sm text-stone-600 mb-2">Nama Lengkap</label>
+                        <input x-model="nama" required type="text" class="w-full border-b border-stone-300 py-2 focus:outline-none focus:border-stone-800 bg-transparent font-sans text-stone-800" placeholder="Masukkan nama Anda...">
+                    </div>
+                    <div>
+                        <label class="block font-sans text-sm text-stone-600 mb-2">Apakah Anda akan hadir?</label>
+                        <select x-model="kehadiran" required class="w-full border-b border-stone-300 py-2 focus:outline-none focus:border-stone-800 bg-transparent font-sans text-stone-800">
+                            <option value="">Pilih konfirmasi...</option>
+                            <option value="Hadir">Ya, saya akan hadir</option>
+                            <option value="Tidak Hadir">Maaf, saya tidak bisa hadir</option>
+                        </select>
+                    </div>
+                    
+                    <div x-show="kehadiran === 'Hadir'" x-transition>
+                        <label class="block font-sans text-sm text-stone-600 mb-2 mt-6">Jumlah Kehadiran (Orang)</label>
+                        <select x-model="jumlah" class="w-full border-b border-stone-300 py-2 focus:outline-none focus:border-stone-800 bg-transparent font-sans text-stone-800">
+                            <option value="1">1 Orang</option>
+                            <option value="2">2 Orang</option>
+                        </select>
+                    </div>
+                    
+                    <button type="submit" :disabled="isSubmitting" class="w-full bg-stone-800 text-white font-sans py-4 rounded-lg tracking-wider hover:bg-stone-700 transition-colors mt-8 flex items-center justify-center gap-2 disabled:bg-stone-500">
+                        <span x-show="isSubmitting">MENGIRIM...</span>
+                        <span x-show="!isSubmitting">KIRIM KONFIRMASI</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="py-24 bg-stone-100" x-data="wishSection()">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-3xl md:text-4xl text-stone-800 mb-4">Ucapan & Doa Restu</h2>
+                <p class="font-sans font-light text-stone-500">Tuliskan doa dan harapan Anda untuk kedua mempelai.</p>
+            </div>
+
+            <div class="grid md:grid-cols-5 gap-12">
+                <div class="md:col-span-2 space-y-6 bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-stone-200 h-fit">
+                    <div>
+                        <label class="block font-sans text-sm text-stone-600 mb-2">Nama Anda</label>
+                        <input x-model="name" type="text" class="w-full border border-stone-200 rounded-lg px-4 py-2 focus:outline-none focus:border-stone-400 bg-stone-50 font-sans text-stone-800" placeholder="Mis: Sahabat, Keluarga...">
+                    </div>
+                    
+                    <div>
+                        <label class="block font-sans text-sm text-stone-600 mb-2 flex items-center justify-between">
+                            <span>Ucapan Anda</span>
+                            <div class="flex items-center gap-1 text-amber-600 text-xs bg-amber-50 px-2 py-1 rounded-full">
+                                ✦ AI Formatter
+                            </div>
+                        </label>
+                        <textarea x-model="wishText" rows="4" class="w-full border border-stone-200 rounded-lg px-4 py-3 focus:outline-none focus:border-stone-400 bg-stone-50 font-sans text-stone-800 text-sm leading-relaxed resize-none" placeholder="Ketik ucapan sederhana Anda di sini..."></textarea>
+                        
+                        <p x-show="errorMsg" x-text="errorMsg" class="text-red-500 text-xs mt-2 font-sans"></p>
+
+                        <button type="button" @click="handleBeautify" :disabled="isGenerating || !wishText.trim()" class="mt-3 w-full border border-amber-200 bg-amber-50 text-amber-700 hover:bg-amber-100 disabled:opacity-50 py-2 rounded-lg font-sans text-sm transition-colors flex items-center justify-center gap-2">
+                            <span x-show="isGenerating">Sedang merangkai kata...</span>
+                            <span x-show="!isGenerating">✦ Perindah dengan AI</span>
+                        </button>
+                    </div>
+
+                    <button @click="handleSubmitWish" :disabled="!name || !wishText.trim() || isSubmittingWish" class="w-full bg-stone-800 text-white font-sans py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-stone-700 transition-colors disabled:bg-stone-300 disabled:text-stone-500">
+                        <span x-show="isSubmittingWish">Mengirim...</span>
+                        <span x-show="!isSubmittingWish">Kirim Ucapan</span>
+                    </button>
+                </div>
+
+                <div class="md:col-span-3 space-y-4 max-h-[500px] overflow-y-auto pr-2 custom-scrollbar">
+                    <template x-for="(wish, idx) in wishesList" :key="idx">
+                        <div class="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm">
+                            <div class="flex justify-between items-start mb-3">
+                                <h4 class="font-serif text-lg font-semibold text-stone-800" x-text="wish.name"></h4>
+                                <span class="text-xs text-stone-400 font-sans" x-text="wish.time"></span>
+                            </div>
+                            <p class="font-sans font-light text-stone-600 text-sm leading-relaxed" x-text="'&ldquo;' + wish.text + '&rdquo;'"></p>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 bg-stone-900 text-stone-400 text-center">
+        <p class="font-serif text-2xl mb-4 text-white">Dani & Selma</p>
+        <p class="font-sans text-xs tracking-widest uppercase mb-8">30 Oktober 2026</p>
+        <p class="font-sans text-xs text-stone-500">
+            Dibuat dengan ♥ Created With Love from Feb 2021 ❤️
+        </p>
+    </footer>
+
+    <script>
+        // SATU LINK LINK APPS SCRIPT YANG SAMA
+        const GLOBAL_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwFFpPQ_LFP_UInqbH0LdAFEWDw6AJ1uDeEMPJdRdOIYdcidVak1faLv69IOm8_wbWpUQ/exec';
+        
+        // MASUKKAN GEMINI API KEY ANDA DI SINI
+        const GEMINI_API_KEY = ""; 
+
+        function weddingApp() {
+            return {
+                weddingDate: new Date("2026-10-30T09:00:00").getTime(),
+                timeLeft: { hari: 0, jam: 0, menit: 0, detik: 0 },
+                init() {
+                    const calculate = () => {
+                        const difference = this.weddingDate - new Date().getTime();
+                        if (difference > 0) {
+                            this.timeLeft.hari = Math.floor(difference / (1000 * 60 * 60 * 24));
+                            this.timeLeft.jam = Math.floor((difference / (1000 * 60 * 60)) % 24);
+                            this.timeLeft.menit = Math.floor((difference / 1000 / 60) % 60);
+                            this.timeLeft.detik = Math.floor((difference / 1000) % 60);
+                        }
+                    };
+                    calculate();
+                    setInterval(calculate, 1000);
+                }
+            }
+        }
+
+        function rsvpForm() {
+            return {
+                nama: '',
+                kehadiran: '',
+                jumlah: '1',
+                status: '',
+                isSubmitting: false,
+                async handleSubmit() {
+                    this.isSubmitting = true;
+                    try {
+                        const formBody = new URLSearchParams();
+                        formBody.append('type', 'rsvp');
+                        formBody.append('nama', this.nama);
+                        formBody.append('kehadiran', this.kehadiran);
+                        formBody.append('jumlah', this.kehadiran === 'Tidak Hadir' ? '0' : this.jumlah);
+
+                        await fetch(GLOBAL_SCRIPT_URL, {
+                            method: 'POST',
+                            body: formBody,
+                            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                        });
+                        this.status = 'submitted';
+                    } catch (error) {
+                        console.error(error);
+                        this.status = 'submitted'; // Fallback UI tetap sukses
+                    } finally {
+                        this.isSubmitting = false;
+                    }
+                }
+            }
+        }
+
+        function wishSection() {
+            return {
+                name: '',
+                wishText: '',
+                isGenerating: false,
+                isSubmittingWish: false,
+                errorMsg: '',
+                wishesList: [
+                    { name: "Keluarga Besar Bpk. Handoko", text: "Selamat menempuh hidup baru. Semoga menjadi keluarga yang sakinah, mawaddah, dan warahmah. Cinta dan kasih sayang selalu menyertai perjalanan kalian.", time: "1 jam yang lalu" },
+                    { name: "Sahabat Kuliah", text: "Akhirnya hari yang ditunggu tiba! Selamat mengarungi bahtera rumah tangga, semoga senantiasa diberikan kebahagiaan dan keberkahan.", time: "3 jam yang lalu" }
+                ],
+                async handleBeautify() {
+                    if (!this.wishText.trim()) return;
+                    this.isGenerating = true;
+                    this.errorMsg = '';
+                    
+                    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${GEMINI_API_KEY}`;
+                    
+                    try {
+                        const response = await fetch(url, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                contents: [{ parts: [{ text: this.wishText }] }],
+                                systemInstruction: { 
+                                    parts: [{ 
+                                        text: "Anda adalah asisten pernikahan yang ahli merangkai kata. Pengguna akan memberikan draf ucapan selamat pernikahan. Tugas Anda adalah memperindah bahasanya agar terdengar lebih elegan, puitis, romantis, hangat, dan tulus dalam bahasa Indonesia. Jangan mengubah esensi pesan. Berikan hanya hasil teksnya saja tanpa tanda kutip atau penjelasan tambahan." 
+                                    }] 
+                                }
+                            })
+                        });
+
+                        if (!response.ok) throw new Error('Sistem AI sedang sibuk.');
+                        const data = await response.json();
+                        const result = data.candidates?.[0]?.content?.parts?.[0]?.text;
+                        if (result) this.wishText = result.trim();
+                    } catch (err) {
+                        this.errorMsg = "Gagal memperindah ucapan, menggunakan teks asli.";
+                    } finally {
+                        this.isGenerating = false;
+                    }
+                },
+                async handleSubmitWish() {
+                    this.isSubmittingWish = true;
+                    try {
+                        const formBody = new URLSearchParams();
+                        formBody.append('type', 'ucapan');
+                        formBody.append('nama', this.name);
+                        formBody.append('ucapan', this.wishText);
+
+                        await fetch(GLOBAL_SCRIPT_URL, {
+                            method: 'POST',
+                            body: formBody,
+                            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                        });
+
+                        this.wishesList.unshift({ name: this.name, text: this.wishText, time: "Baru saja" });
+                        this.name = '';
+                        this.wishText = '';
+                    } catch (error) {
+                        console.error(error);
+                        // Fallback jika terjadi kendala CORS
+                        this.wishesList.unshift({ name: this.name, text: this.wishText, time: "Baru saja" });
+                        this.name = '';
+                        this.wishText = '';
+                    } {
+                        this.isSubmittingWish = false;
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
